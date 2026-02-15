@@ -1,0 +1,140 @@
+<div class="min-h-screen flex flex-col font-sans">
+  
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center gap-2">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-serif font-bold text-2xl">L</div>
+          <span class="font-serif font-bold text-2xl tracking-tighter text-gray-900 dark:text-white">
+            LuzViMinda
+          </span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors">Home</a>
+          <a href="#tours" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors">Destinations</a>
+          <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors">About</a>
+          <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors">Contact</a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button 
+          (click)="themeService.toggleTheme()"
+          class="p-2 rounded-full text-gray-600 dark:text-yellow-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none"
+          aria-label="Toggle Theme">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="currentThemeIcon" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <app-hero 
+    title="Discover the Pearl of the Orient"
+    subtitle="Experience the breathtaking islands, vibrant culture, and pristine beaches of the Philippines.">
+  </app-hero>
+
+  <!-- Tours Section -->
+  <section id="tours" class="py-20 px-4 bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-2">Our Destinations</h2>
+        <h3 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Popular Tour Packages</h3>
+        <div class="w-24 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (tour of tours; track tour.id) {
+          <app-tour-card [tour]="tour"></app-tour-card>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature/About Section -->
+  <section id="about" class="py-20 bg-white dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2 relative">
+        <div class="absolute -top-4 -left-4 w-24 h-24 bg-secondary/20 rounded-full z-0"></div>
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/20 rounded-full z-0"></div>
+        <img src="https://picsum.photos/seed/culture/800/600" alt="Filipino Culture" class="relative z-10 rounded-2xl shadow-xl w-full object-cover h-[400px]">
+      </div>
+      <div class="w-full md:w-1/2">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Why Choose LuzViMinda?</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+          We are dedicated to showing you the authentic beauty of the Philippines. From the northern highlands of Luzon to the pristine beaches of Visayas and the untouched nature of Mindanao, we curate experiences that last a lifetime.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3">
+            <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">✓</div>
+            <span class="text-gray-700 dark:text-gray-200">Locally guided tours by experts</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">✓</div>
+            <span class="text-gray-700 dark:text-gray-200">Sustainable and eco-friendly practices</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">✓</div>
+            <span class="text-gray-700 dark:text-gray-200">Customized itineraries for every traveler</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-20 bg-primary text-white text-center px-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Ready for your adventure?</h2>
+      <p class="mb-8 text-white/90 text-lg">Subscribe to get special offers and travel tips directly to your inbox.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <input type="email" placeholder="Your email address" class="px-6 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/30 w-full sm:w-96">
+        <button class="bg-secondary hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+           <div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-serif font-bold">L</div>
+           <span class="text-white font-serif font-bold text-xl">LuzViMinda</span>
+        </div>
+        <p class="max-w-xs text-sm">Your gateway to the 7,641 islands of the Philippines. Experience paradise with us.</p>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Explore</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-primary transition-colors">Destinations</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Tour Packages</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li>info@luzviminda.com</li>
+          <li>+63 2 8888 1234</li>
+          <li>Makati City, Philippines</li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center mt-12 pt-8 border-t border-gray-800 text-xs">
+      &copy; 2024 LuzViMinda Travels. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- AI Assistant Floating Component -->
+  <app-ai-assistant></app-ai-assistant>
+
+</div>
